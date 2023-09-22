@@ -171,11 +171,11 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // Eliminar
         int idMateria=Integer.parseInt(jtCodigo.getText());
-        Materia materia=new Materia(idMateria, "",1 , true);
-        System.out.println(materia.getIdMateria());
+        
+      
         MateriaData materiaEncontrado = new MateriaData();
-        materia=materiaEncontrado.buscarMateria(materia);
-        System.out.println(materia.getIdMateria());
+        Materia materia = materiaEncontrado.buscarMateria(idMateria);
+        
         if (materia != null) {
             // Si se encuentra el alumno, elimínalo
             materiaEncontrado.eliminarMateria(materia);

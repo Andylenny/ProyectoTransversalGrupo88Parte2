@@ -47,8 +47,8 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         jTapellido = new javax.swing.JTextField();
         jTnombre = new javax.swing.JTextField();
         jRestado = new javax.swing.JRadioButton();
-        jCfechaNac = new com.toedter.calendar.JCalendar();
         jBbuscar = new javax.swing.JButton();
+        jCfechaNac = new com.toedter.calendar.JDateChooser();
 
         setBorder(javax.swing.BorderFactory.createCompoundBorder());
         setClosable(true);
@@ -124,7 +124,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                                 .addComponent(jBnuevo)
                                 .addGap(46, 46, 46)
                                 .addComponent(jBeliminar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                                 .addComponent(jBguardar)
                                 .addGap(90, 90, 90))
                             .addGroup(layout.createSequentialGroup()
@@ -133,9 +133,9 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel3)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
-                                        .addGap(78, 78, 78)
-                                        .addComponent(jCfechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)))
+                                        .addGap(56, 56, 56)
+                                        .addComponent(jCfechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jBsalir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,10 +189,8 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jCfechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jCfechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBnuevo)
                     .addComponent(jBeliminar)
@@ -290,7 +288,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBguardar;
     private javax.swing.JButton jBnuevo;
     private javax.swing.JButton jBsalir;
-    private com.toedter.calendar.JCalendar jCfechaNac;
+    private com.toedter.calendar.JDateChooser jCfechaNac;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
