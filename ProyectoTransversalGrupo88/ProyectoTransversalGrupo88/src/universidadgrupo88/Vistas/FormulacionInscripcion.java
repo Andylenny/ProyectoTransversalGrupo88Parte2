@@ -5,17 +5,44 @@
  */
 package universidadgrupo88.Vistas;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import universidad.AccesoAdatos.AlumnoData;
+import universidad.AccesoAdatos.InscripcionData;
+import universidad.AccesoAdatos.MateriaData;
+import universidad.Entidades.Alumnos;
+import universidad.Entidades.Inscripcion;
+import universidad.Entidades.Materia;
+
 /**
  *
  * @author Lourdes
  */
 public class FormulacionInscripcion extends javax.swing.JInternalFrame {
+private DefaultTableModel modelo = new DefaultTableModel(){
+    public boolean isCellEditable (int fila, int columna){
+        return false;
+    }
+};
+private ArrayList<Inscripcion> listaInscripcion;
+private ArrayList<Materia> listaMateria;
+private ArrayList<Alumnos> listaAlumnos;
+private AlumnoData aluData= new AlumnoData();
+private InscripcionData inscripcionData = new InscripcionData();
+private MateriaData materiaData= new MateriaData();
+
 
     /**
      * Creates new form FormulacionInscripcion
      */
     public FormulacionInscripcion() {
         initComponents();
+        listaInscripcion = (ArrayList<Inscripcion>) inscripcionData.obtenerInscripciones();
+        listaMateria = (ArrayList<Materia>) materiaData.listarMaterias();
+        listaAlumnos = (ArrayList<Alumnos>) aluData.listarAlumnos();
+        armarCabecera();
+        cargarAlumnos();
     }
 
     /**
@@ -27,6 +54,7 @@ public class FormulacionInscripcion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupo = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jcAlumno = new javax.swing.JComboBox<>();
@@ -55,9 +83,21 @@ public class FormulacionInscripcion extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Listado de Materias");
 
+        grupo.add(jrMateriasInscriptas);
         jrMateriasInscriptas.setText("Materias Inscriptas");
+        jrMateriasInscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrMateriasInscriptasActionPerformed(evt);
+            }
+        });
 
+        grupo.add(jrMateriasNoinscriptas);
         jrMateriasNoinscriptas.setText("Materias no Inscriptas");
+        jrMateriasNoinscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrMateriasNoinscriptasActionPerformed(evt);
+            }
+        });
 
         jtTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,10 +113,25 @@ public class FormulacionInscripcion extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtTabla);
 
         jbInscribir.setText("Inscribir");
+        jbInscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbInscribirActionPerformed(evt);
+            }
+        });
 
         jbAnular.setText("Anular Inscripcion");
+        jbAnular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAnularActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,10 +194,85 @@ public class FormulacionInscripcion extends javax.swing.JInternalFrame {
 
     private void jcAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAlumnoActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jcAlumnoActionPerformed
+
+    private void jrMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrMateriasInscriptasActionPerformed
+        // TODO add your handling code here:
+        borrarFilas();
+        Alumnos alubox = (Alumnos)jcAlumno.getSelectedItem();
+        listaMateria = (ArrayList)inscripcionData.obtenerMateriasCursadas(alubox.getIdAlumno());
+        for(Materia mat:listaMateria){
+            modelo.addRow(new Object[]{mat.getIdMateria(),mat.getNombre(),mat.getAnioMateria()});
+            jbInscribir.setEnabled(false);
+            jbAnular.setEnabled(true);
+        }
+        
+        
+        
+    }//GEN-LAST:event_jrMateriasInscriptasActionPerformed
+
+    private void jrMateriasNoinscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrMateriasNoinscriptasActionPerformed
+        // TODO add your handling code here:
+         borrarFilas();
+        Alumnos alubox = (Alumnos)jcAlumno.getSelectedItem();
+        listaMateria = (ArrayList)inscripcionData.obtenerMateriaNOCursadas(alubox.getIdAlumno());
+        for(Materia mat:listaMateria){
+            modelo.addRow(new Object[]{mat.getIdMateria(),mat.getNombre(),mat.getAnioMateria()});
+            jbInscribir.setEnabled(true);
+            jbAnular.setEnabled(false);
+        }
+    
+        
+    }//GEN-LAST:event_jrMateriasNoinscriptasActionPerformed
+
+    private void jbInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInscribirActionPerformed
+        // TODO add your handling code here:
+        int idMateria, año;
+        String nombre;
+        
+        Alumnos alumbox = (Alumnos) jcAlumno.getSelectedItem();
+        int fila = jtTabla.getSelectedRow();
+        System.out.println(fila);
+        if(fila >=0){
+            idMateria=(Integer)modelo.getValueAt(fila, 0);
+            nombre=(String)modelo.getValueAt(fila, 1);
+            año=(Integer)modelo.getValueAt(fila, 2);
+            Materia mat= new Materia(idMateria,nombre, año, true);
+            Inscripcion insc = new Inscripcion(alumbox,mat,0);
+            inscripcionData.guardarInscripcion(insc);
+            
+            JOptionPane.showMessageDialog(this, "Alumno inscripto");
+        }else{
+            JOptionPane.showMessageDialog(this, "Seleccione una materia");
+        }
+        
+        
+    }//GEN-LAST:event_jbInscribirActionPerformed
+
+    private void jbAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAnularActionPerformed
+        // TODO add your handling code here:
+        int idMateria;
+        
+        Alumnos alumbox = (Alumnos) jcAlumno.getSelectedItem();
+        int fila = jtTabla.getSelectedRow();
+        System.out.println(fila);
+        if(fila >=0){
+            idMateria=(Integer)modelo.getValueAt(fila, 0);
+        inscripcionData.borrarInscripcionMateriaAlummno(alumbox.getIdAlumno(), idMateria);
+        
+        }
+       
+    }//GEN-LAST:event_jbAnularActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup grupo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -150,9 +280,44 @@ public class FormulacionInscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbAnular;
     private javax.swing.JButton jbInscribir;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JComboBox<String> jcAlumno;
+    private javax.swing.JComboBox<Alumnos> jcAlumno;
     private javax.swing.JRadioButton jrMateriasInscriptas;
     private javax.swing.JRadioButton jrMateriasNoinscriptas;
     private javax.swing.JTable jtTabla;
     // End of variables declaration//GEN-END:variables
+  public void cargarAlumnos(){
+           for(Alumnos alu : aluData.listarAlumnos())
+               jcAlumno.addItem(alu);
+           
+       }
+           
+    
+    private void armarCabecera(){
+        ArrayList<Object> columnas= new ArrayList<>();
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Año");
+         jtTabla.setModel(modelo);
+         
+         for(Object it: columnas){
+             modelo.addColumn(it);
+         }
+         jtTabla.setModel(modelo);
+     
+       
+    }
+
+private void borrarFilas(){
+    int filas= jtTabla.getRowCount()-1;
+    
+    for(int f=filas;f>=0; f--){
+        modelo.removeRow(f);
+    }
+        
+    }
 }
+
+
+
+
+

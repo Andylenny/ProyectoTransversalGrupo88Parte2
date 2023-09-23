@@ -42,7 +42,7 @@
                               <Component id="jBnuevo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                               <Component id="jBeliminar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="45" max="32767" attributes="0"/>
                               <Component id="jBguardar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
@@ -52,11 +52,11 @@
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                                      <Component id="jCfechaNac" min="-2" pref="239" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Component id="jCfechaNac" min="-2" pref="146" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="13" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jBsalir" min="-2" max="-2" attributes="0"/>
@@ -128,12 +128,9 @@
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                      <Component id="jCfechaNac" min="-2" pref="17" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jCfechaNac" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="10" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBnuevo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBeliminar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -237,8 +234,6 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRestado">
     </Component>
-    <Component class="com.toedter.calendar.JCalendar" name="jCfechaNac">
-    </Component>
     <Component class="javax.swing.JButton" name="jBbuscar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
@@ -246,6 +241,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBbuscarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jCfechaNac">
     </Component>
   </SubComponents>
 </Form>
