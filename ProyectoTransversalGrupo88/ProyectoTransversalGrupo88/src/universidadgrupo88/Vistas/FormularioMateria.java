@@ -6,7 +6,9 @@
 package universidadgrupo88.Vistas;
 
 import javax.swing.JOptionPane;
+import universidad.AccesoAdatos.AlumnoData;
 import universidad.AccesoAdatos.MateriaData;
+import universidad.Entidades.Alumnos;
 import universidad.Entidades.Materia;
 
 /**
@@ -53,6 +55,11 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jLabel1.setText("Materia");
 
         jbNuevo.setText("Nuevo");
+        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNuevoActionPerformed(evt);
+            }
+        });
 
         jbEliminar.setText("Eliminar");
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +69,11 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         });
 
         jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
 
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +83,11 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         });
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Código");
 
@@ -165,7 +182,20 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // buscar
+         int codigo = Integer.parseInt(jtCodigo.getText());
         
+        MateriaData materiaEncontrada = new MateriaData();
+// Realiza la búsqueda del alumno por DNI
+        
+        Materia materia = materiaEncontrada.buscarMateria(codigo);
+        if (materia != null) {
+            // Si se encuentra el alumno, muestra su información en los campos de texto
+            jtCodigo.setText(String.valueOf(materia.getIdMateria()));
+            jtNombre.setText(materia.getNombre());
+            jtAño.setText(String.valueOf(materia.getAnioMateria()));
+            jrEstado.setSelected(materia.isActivo());
+            
+        }  
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
@@ -186,6 +216,40 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+        // TODO add your handling code here:
+         activarCampos();
+        limpiar();
+        jtCodigo.requestFocus();
+        jtNombre.setEnabled(true);
+        jtAño.setEnabled(true);
+        jrEstado.setEnabled(true);
+        jbBuscar.setEnabled(isIcon);
+        jbGuardar.setEnabled(true);
+        jbSalir.setEnabled(true);
+        jbNuevo.setEnabled(true);
+    }//GEN-LAST:event_jbNuevoActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        // TODO add your handling code here:
+        int codigo = Integer.parseInt(jtCodigo.getText());
+        String nombre = jtNombre.getText();
+        int año = Integer.parseInt(jtAño.getText());
+        boolean estado = jrEstado.isEnabled();
+       
+
+       Materia materia = new Materia(codigo, nombre, año, estado);
+
+        MateriaData mat = new MateriaData();
+        mat.guardarMateria(materia);
+        JOptionPane.showMessageDialog(this, "Alumno Guardado");
+    }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -203,4 +267,31 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtCodigo;
     private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
+ private void desactivarCampos() {
+        jtCodigo.setEnabled(false);
+        jtNombre.setEnabled(false);
+        jtAño.setEnabled(false);
+        jrEstado.isEnabled();
+
+    }
+
+    private void activarCampos() {
+        jtCodigo.setEnabled(true);
+        jtNombre.setEnabled(true);
+        jtAño.setEnabled(true);
+        jrEstado.isEnabled();
+
+    }
+
+    private void limpiar() {
+
+        jtCodigo.setText("");
+        jtNombre.setText("");
+        jtAño.setText("");
+        jrEstado.isEnabled();
+
+
+
+    }
+
 }

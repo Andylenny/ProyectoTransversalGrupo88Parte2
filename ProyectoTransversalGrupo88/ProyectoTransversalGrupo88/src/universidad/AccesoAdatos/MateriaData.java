@@ -53,11 +53,11 @@ public class MateriaData {
         Materia materia = new Materia();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, materia.getIdMateria());
+            ps.setInt(1, id);
             System.out.println(materia.getIdMateria());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                materia.setIdMateria(materia.getIdMateria());
+                materia.setIdMateria(id);
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("año"));
                 materia.setActivo(true);
