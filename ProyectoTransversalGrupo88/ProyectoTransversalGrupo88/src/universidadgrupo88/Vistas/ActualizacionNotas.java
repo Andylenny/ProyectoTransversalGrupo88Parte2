@@ -5,17 +5,35 @@
  */
 package universidadgrupo88.Vistas;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import universidad.AccesoAdatos.AlumnoData;
+import universidad.AccesoAdatos.InscripcionData;
+import universidad.AccesoAdatos.MateriaData;
+import universidad.Entidades.Alumnos;
+import universidad.Entidades.Materia;
+
 /**
  *
  * @author Lourdes
  */
 public class ActualizacionNotas extends javax.swing.JInternalFrame {
+    private DefaultTableModel modelo=new DefaultTableModel();
+    private AlumnoData aluData= new AlumnoData();
+    private ArrayList<Alumnos> ListarAlumnos;
+    private ArrayList<Materia> obtenerMateriaCursadas;
+    private InscripcionData inscripcionData = new InscripcionData();
+    private MateriaData materiaData= new MateriaData();
 
     /**
      * Creates new form ActualizacionNotas
      */
     public ActualizacionNotas() {
         initComponents();
+        armarCabecera();
+        cargarAlumnos();
+        ListarAlumnos = (ArrayList<Alumnos>) aluData.listarAlumnos();
+
     }
 
     /**
@@ -65,6 +83,11 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
         jbGuardar.setText("Guardar");
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,6 +141,11 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcAlumnoActionPerformed
 
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -125,7 +153,27 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JComboBox<String> jcAlumno;
+    private javax.swing.JComboBox<Alumnos> jcAlumno;
     private javax.swing.JTable jtTabla;
     // End of variables declaration//GEN-END:variables
+private void armarCabecera(){
+    modelo.addColumn("Codigo");
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Nota");
+    jtTabla.setModel(modelo);
 }
+ public void cargarAlumnos(){
+          for(Alumnos alu : aluData.listarAlumnos())
+             jcAlumno.addItem(alu);
+           
+       
+
+}
+}
+
+
+
+
+
+
+
