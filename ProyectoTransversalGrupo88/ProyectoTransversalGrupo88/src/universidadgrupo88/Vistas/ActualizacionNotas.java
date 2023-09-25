@@ -5,17 +5,34 @@
  */
 package universidadgrupo88.Vistas;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import universidad.AccesoAdatos.AlumnoData;
+import universidad.AccesoAdatos.InscripcionData;
+import universidad.AccesoAdatos.MateriaData;
+import universidad.Entidades.Alumnos;
+import universidad.Entidades.Materia;
+
 /**
  *
  * @author Lourdes
  */
 public class ActualizacionNotas extends javax.swing.JInternalFrame {
+    private DefaultTableModel modelo=new DefaultTableModel();
+    private AlumnoData aluData= new AlumnoData();
+    private ArrayList<Alumnos> ListarAlumnos;
+    private ArrayList<Materia> obtenerMateriaCursadas;
+    private InscripcionData inscripcionData = new InscripcionData();
+    private MateriaData materiaData= new MateriaData();
 
     /**
      * Creates new form ActualizacionNotas
      */
     public ActualizacionNotas() {
         initComponents();
+        armarCabecera();
+        cargarAlumnos();
+        ListarAlumnos = (ArrayList<Alumnos>) aluData.listarAlumnos();
     }
 
     /**
@@ -60,9 +77,23 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTabla.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jtTablaAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jtTabla);
 
         jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
 
@@ -116,7 +147,25 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
 
     private void jcAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAlumnoActionPerformed
         // TODO add your handling code here:
+       
+//        Alumnos alubox = (Alumnos)jcAlumno.getSelectedItem();
+//       
+//        obtenerMateriaCursadas = (ArrayList)inscripcionData.obtenerMateriasCursadas(jcAlumno.get());
+//        //InscripcionData = (ArrayList)inscripcionData.actualizarNota;
+//        for(Materia mat:obtenerMateriaCursadas){
+//            modelo.addRow(new Object[]{mat.getIdMateria(),mat.getNombre(),in()});
+//            
     }//GEN-LAST:event_jcAlumnoActionPerformed
+    
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        // TODO add your handling code here:
+      ///  int Codigo = Integer.parseInt(jtTabla.get
+        
+    }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jtTablaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jtTablaAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtTablaAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -125,7 +174,20 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JComboBox<String> jcAlumno;
+    private javax.swing.JComboBox<Alumnos> jcAlumno;
     private javax.swing.JTable jtTabla;
     // End of variables declaration//GEN-END:variables
+private void armarCabecera(){
+    modelo.addColumn("Codigo");
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Nota");
+    jtTabla.setModel(modelo);
+}
+ public void cargarAlumnos(){
+          for(Alumnos alu : aluData.listarAlumnos())
+             jcAlumno.addItem(alu);
+           
+       
+
+}
 }

@@ -37,14 +37,18 @@ private MateriaData materiaData= new MateriaData();
      * Creates new form FormulacionInscripcion
      */
     public FormulacionInscripcion() {
+        try{
         initComponents();
         listaInscripcion = (ArrayList<Inscripcion>) inscripcionData.obtenerInscripciones();
         listaMateria = (ArrayList<Materia>) materiaData.listarMaterias();
         listaAlumnos = (ArrayList<Alumnos>) aluData.listarAlumnos();
         armarCabecera();
         cargarAlumnos();
+    }   catch (Exception e) {
+         e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error al inicializar el formulario de inscripción.");
     }
-
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
