@@ -5,17 +5,34 @@
  */
 package universidadgrupo88.Vistas;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import universidad.AccesoAdatos.InscripcionData;
+import universidad.AccesoAdatos.MateriaData;
+import universidad.Entidades.Alumnos;
+import universidad.Entidades.Materia;
+
 /**
  *
  * @author Lourdes
  */
 public class ConsultaAlumnoxMateria extends javax.swing.JInternalFrame {
+private DefaultTableModel modelo = new DefaultTableModel(){
+    public boolean isCellEditable (int fila, int columna){
+        return false;
+    }
+};
 
     /**
      * Creates new form ConsultaAlumnoxMateria
      */
+    private MateriaData materiaData= new MateriaData();
+    private ArrayList<Alumnos> listaAlumnos;
+    private InscripcionData inscripcionData = new InscripcionData();
     public ConsultaAlumnoxMateria() {
         initComponents();
+        armarCabecera();
+        cargarMaterias();
     }
 
     /**
@@ -42,7 +59,11 @@ public class ConsultaAlumnoxMateria extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Seleccione una materia");
 
-        jcMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcMateriaActionPerformed(evt);
+            }
+        });
 
         jtTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,13 +119,50 @@ public class ConsultaAlumnoxMateria extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMateriaActionPerformed
+        Materia materiaBox = (Materia)jcMateria.getSelectedItem();
+        borrarFilas();
+        listaAlumnos=(ArrayList)inscripcionData.obtenerAlumnosXMateria(materiaBox.getIdMateria());
+        for(Alumnos alum:listaAlumnos){
+            modelo.addRow(new Object[]{alum.getIdAlumno(),alum.getDni(),alum.getApellido(),alum.getNombre()});
+        }
+        
+    }//GEN-LAST:event_jcMateriaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> jcMateria;
+    private javax.swing.JComboBox<Object> jcMateria;
     private javax.swing.JTable jtTabla;
     // End of variables declaration//GEN-END:variables
+    public void cargarMaterias(){
+        for(Materia mate : materiaData.listarMaterias())
+               jcMateria.addItem(mate);
+       }
+  
+    private void armarCabecera(){
+        ArrayList<Object> columnas= new ArrayList<>();
+        modelo.addColumn("ID");
+        modelo.addColumn("DNI");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Nombre");
+         jtTabla.setModel(modelo);
+         
+         for(Object it: columnas){
+             modelo.addColumn(it);
+         }
+         jtTabla.setModel(modelo);  
+    }
+    private void borrarFilas(){
+    int filas= jtTabla.getRowCount()-1;
+    
+    for(int f=filas;f>=0; f--){
+        modelo.removeRow(f);
+    }
+        
+    }
+
 }

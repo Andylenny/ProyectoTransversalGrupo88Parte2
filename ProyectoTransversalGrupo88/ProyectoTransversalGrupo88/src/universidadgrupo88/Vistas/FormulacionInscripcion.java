@@ -38,11 +38,11 @@ private MateriaData materiaData= new MateriaData();
      */
     public FormulacionInscripcion() {
         initComponents();
-        listaInscripcion = (ArrayList<Inscripcion>) inscripcionData.obtenerInscripciones();
+        cargarAlumnos();
+        /*listaInscripcion = (ArrayList<Inscripcion>) inscripcionData.obtenerInscripciones();*/
         listaMateria = (ArrayList<Materia>) materiaData.listarMaterias();
         listaAlumnos = (ArrayList<Alumnos>) aluData.listarAlumnos();
         armarCabecera();
-        cargarAlumnos();
     }
 
     /**
@@ -194,7 +194,7 @@ private MateriaData materiaData= new MateriaData();
 
     private void jcAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAlumnoActionPerformed
         // TODO add your handling code here:
-        
+     
     }//GEN-LAST:event_jcAlumnoActionPerformed
 
     private void jrMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrMateriasInscriptasActionPerformed
@@ -208,7 +208,7 @@ private MateriaData materiaData= new MateriaData();
             jbAnular.setEnabled(true);
         }
         
-        
+
         
     }//GEN-LAST:event_jrMateriasInscriptasActionPerformed
 
