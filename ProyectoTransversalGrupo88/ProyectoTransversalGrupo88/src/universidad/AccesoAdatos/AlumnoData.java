@@ -95,7 +95,6 @@ public class AlumnoData {
     public Alumnos buscarAlumnos(int id) {
         String sql = "SELECT dni, apellido,nombre,fechaNacimiento FROM alumno WHERE idAlumno =? AND estado =1";
         Alumnos alumno = null;
-
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -114,7 +113,7 @@ public class AlumnoData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno  1");
         }
         return alumno;
 

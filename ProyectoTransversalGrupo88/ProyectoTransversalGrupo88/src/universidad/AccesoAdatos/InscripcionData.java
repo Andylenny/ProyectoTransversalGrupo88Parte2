@@ -57,13 +57,13 @@ public class InscripcionData {
             }
        
                } 
-    public void actualizarNota(int idAlumno,int idMateria,double nota){
+    public void actualizarNota(Inscripcion ins){
         String sql="UPDATE inscripcion SET nota = ? WHERE idAlumno = ? and idMateria = ?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
-            ps.setDouble(1, nota);
-            ps.setInt(2, idAlumno);
-            ps.setInt(3, idMateria);
+            ps.setDouble(1, ins.getNota());
+            ps.setInt(2, ins.getAlumno().getIdAlumno());
+            ps.setInt(3, ins.getMateria().getIdMateria());
             int filas=ps.executeUpdate();
             if(filas<0){
                 JOptionPane.showMessageDialog(null, "nota actulizada");
@@ -126,14 +126,13 @@ public class InscripcionData {
         }
         return cursadas;
      }
-    public List<Inscripcion> obtenerInscripcionPorAlumno (int idAlumndo){
+    public List<Inscripcion> obtenerInscripcionPorAlumno (int idAlumno){
         ArrayList<Inscripcion> cursadas= new ArrayList<>();
-         
-         String sql="SELECT * FROM inscripcion WHERE idAlumno = ?";
+        String sql="SELECT * FROM inscripcion WHERE idAlumno = ?";
          
         try {
             PreparedStatement ps=con.prepareStatement(sql);
-            ps.setInt(1, idAlumndo);
+            ps.setInt(1,idAlumno);
             ResultSet rs=ps.executeQuery();
             
             while(rs.next()) {

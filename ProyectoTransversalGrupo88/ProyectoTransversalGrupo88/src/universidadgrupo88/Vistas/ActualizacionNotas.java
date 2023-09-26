@@ -6,11 +6,13 @@
 package universidadgrupo88.Vistas;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidad.AccesoAdatos.AlumnoData;
 import universidad.AccesoAdatos.InscripcionData;
 import universidad.AccesoAdatos.MateriaData;
 import universidad.Entidades.Alumnos;
+import universidad.Entidades.Inscripcion;
 import universidad.Entidades.Materia;
 
 /**
@@ -22,8 +24,10 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
     private AlumnoData aluData= new AlumnoData();
     private ArrayList<Alumnos> ListarAlumnos;
     private ArrayList<Materia> obtenerMateriaCursadas;
+    private ArrayList<Inscripcion> obtenerInscripciones;
     private InscripcionData inscripcionData = new InscripcionData();
     private MateriaData materiaData= new MateriaData();
+    private Inscripcion ins=new Inscripcion();
 
     /**
      * Creates new form ActualizacionNotas
@@ -81,6 +85,11 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtTabla);
 
         jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -139,14 +148,40 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
 
     private void jcAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAlumnoActionPerformed
         // Seleccion de alumno
-        Alumnos alumno=(Alumnos)jcAlumno.getSelectedItem();
-        /*obtenerMateriaCursadas=inscripcionData.obtenerMateriasCursadas(alumno.getIdAlumno());*/
+        Alumnos alum=(Alumnos)jcAlumno.getSelectedItem();
+        ins.setAlumno(alum);
+        borrarFilas();
+        obtenerInscripciones=(ArrayList)inscripcionData.obtenerInscripcionPorAlumno(alum.getIdAlumno());
+        for(Inscripcion ins:obtenerInscripciones){
+            modelo.addRow(new Object[]{ins.getMateria().getIdMateria(),ins.getMateria().getNombre(),ins.getNota()});
+        }
     }//GEN-LAST:event_jcAlumnoActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        // GUARDAR
+        double nota;
+        Materia materia;
+        int fila = jtTabla.getSelectedRow();
+        
+        System.out.println(fila);
+        if(fila >=0){
+            materia=materiaData.buscarMateria((int) modelo.getValueAt(fila,0));
+            
+            int x=(Integer)modelo.getValueAt(fila, 2);
+            nota=Double.valueOf(x);
+            ins.setMateria(materia);
+            ins.setNota(nota);
+            inscripcionData.actualizarNota(ins);
+            JOptionPane.showMessageDialog(this, "Materia guardada");
+        }else{
+            JOptionPane.showMessageDialog(this, "Seleccione una materia");
+        }
+    }//GEN-LAST:event_jbGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -165,12 +200,16 @@ private void armarCabecera(){
     jtTabla.setModel(modelo);
 }
  public void cargarAlumnos(){
-          for(Alumnos alu : aluData.listarAlumnos())
-             jcAlumno.addItem(alu);
-           
-       
-
+    for(Alumnos alu : aluData.listarAlumnos()){
+        jcAlumno.addItem(alu);}
 }
+     private void borrarFilas(){
+    int filas= jtTabla.getRowCount()-1;
+    
+    for(int f=filas;f>=0; f--){
+        modelo.removeRow(f);
+    }
+     }
 }
 
 
