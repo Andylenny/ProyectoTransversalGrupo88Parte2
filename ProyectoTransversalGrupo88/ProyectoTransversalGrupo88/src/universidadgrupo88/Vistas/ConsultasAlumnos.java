@@ -5,6 +5,10 @@
  */
 package universidadgrupo88.Vistas;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author sheff
@@ -32,7 +36,14 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icono=new ImageIcon(getClass().getResource("/universidad/recursos/Fondo.jpg"));
+        Image miImage=icono.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(miImage,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMalumno = new javax.swing.JMenu();

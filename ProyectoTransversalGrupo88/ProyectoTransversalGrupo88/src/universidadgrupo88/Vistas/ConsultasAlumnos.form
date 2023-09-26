@@ -182,6 +182,10 @@
           </Layout>
           <SubComponents>
             <Container class="javax.swing.JDesktopPane" name="escritorio">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane(){&#xa;&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(miImage,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icono=new ImageIcon(getClass().getResource(&quot;/universidad/recursos/Fondo.jpg&quot;));&#xa;Image miImage=icono.getImage();"/>
+              </AuxValues>
 
               <Layout>
                 <DimensionLayout dim="0">

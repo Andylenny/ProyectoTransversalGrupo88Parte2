@@ -138,7 +138,9 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAlumnoActionPerformed
-        // TODO add your handling code here:
+        // Seleccion de alumno
+        Alumnos alumno=(Alumnos)jcAlumno.getSelectedItem();
+        /*obtenerMateriaCursadas=inscripcionData.obtenerMateriasCursadas(alumno.getIdAlumno());*/
     }//GEN-LAST:event_jcAlumnoActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
