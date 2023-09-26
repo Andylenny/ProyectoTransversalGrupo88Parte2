@@ -166,16 +166,19 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
         // GUARDAR
         double nota;
         Materia materia;
+        
+        Alumnos alumno = (Alumnos) jcAlumno.getSelectedItem();
         int fila = jtTabla.getSelectedRow();
         
         System.out.println(fila);
         if(fila >=0){
             materia=materiaData.buscarMateria((int) modelo.getValueAt(fila,0));
             
-            int x=(Integer)modelo.getValueAt(fila, 2);
+            Double x=Double.parseDouble((String)modelo.getValueAt(fila, 2));
             nota=Double.valueOf(x);
             ins.setMateria(materia);
             ins.setNota(nota);
+            Inscripcion inscr = new Inscripcion(alumno, materia, 2);
             inscripcionData.actualizarNota(ins);
             JOptionPane.showMessageDialog(this, "Materia guardada");
         }else{
