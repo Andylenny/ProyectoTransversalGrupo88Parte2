@@ -24,7 +24,9 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMalumno">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Alumno"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/universidad/recursos/graduado.png"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
@@ -39,7 +41,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMconsultas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Consultas"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/universidad/recursos/pila-de-libros-de-tres.png"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
@@ -54,7 +58,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMadministracion">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Administracion"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/universidad/recursos/registro-en-linea (1).png"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
@@ -77,7 +83,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMmateria">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Materia"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/universidad/recursos/consultas.png"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
@@ -92,8 +100,20 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMsalir">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Salir"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/universidad/recursos/salida.png"/>
+            </Property>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Salir"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
@@ -171,7 +191,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="504" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="488" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>

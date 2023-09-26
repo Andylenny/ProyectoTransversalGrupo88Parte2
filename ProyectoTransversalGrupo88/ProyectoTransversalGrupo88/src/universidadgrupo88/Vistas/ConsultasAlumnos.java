@@ -45,6 +45,7 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
         jMmateria = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMsalir = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -62,7 +63,7 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGap(0, 488, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -102,7 +103,7 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jMalumno.setText("Alumno");
+        jMalumno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidad/recursos/graduado.png"))); // NOI18N
 
         jMenuItem2.setText("Formulario de alumno");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +115,7 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
 
         jMenuBar1.add(jMalumno);
 
-        jMconsultas.setText("Consultas");
+        jMconsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidad/recursos/pila-de-libros-de-tres.png"))); // NOI18N
 
         jMenuItem3.setText("Formulario de materia");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +127,7 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
 
         jMenuBar1.add(jMconsultas);
 
-        jMadministracion.setText("Administracion");
+        jMadministracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidad/recursos/registro-en-linea (1).png"))); // NOI18N
 
         jMenuItem4.setText("Manejo de Inscripcion");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +147,7 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
 
         jMenuBar1.add(jMadministracion);
 
-        jMmateria.setText("Materia");
+        jMmateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidad/recursos/consultas.png"))); // NOI18N
 
         jMenuItem1.setText("Alumnos por materia");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +159,16 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
 
         jMenuBar1.add(jMmateria);
 
-        jMsalir.setText("Salir");
+        jMsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidad/recursos/salida.png"))); // NOI18N
+
+        jMenuItem6.setText("Salir");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMsalir.add(jMenuItem6);
+
         jMenuBar1.add(jMsalir);
 
         setJMenuBar(jMenuBar1);
@@ -228,6 +238,11 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
         escritorio.moveToFront(cam);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -279,6 +294,7 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu jMmateria;
     private javax.swing.JMenu jMsalir;
     private javax.swing.JPanel jPanel1;
