@@ -5,6 +5,7 @@
  */
 package universidadgrupo88.Vistas;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -20,6 +21,8 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
      */
     public ConsultasAlumnos() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setSize(600, 520);
     }
 
     /**
@@ -204,6 +207,7 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
         escritorio.repaint();
         FormularioAlumno fa = new FormularioAlumno();
         fa.setVisible(true);
+        fa.getContentPane().setBackground(new Color(0, 51, 102));
         escritorio.add(fa);
         escritorio.moveToFront(fa);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -214,6 +218,7 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
         escritorio.repaint();
         FormularioMateria fm = new FormularioMateria();
         fm.setVisible(true);
+        fm.getContentPane().setBackground(new Color(0, 51, 102));
         escritorio.add(fm);
         escritorio.moveToFront(fm);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -224,6 +229,7 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
         escritorio.repaint();
         FormulacionInscripcion fi = new FormulacionInscripcion();
         fi.setVisible(true);
+        fi.getContentPane().setBackground(new Color(0, 51, 102));
         escritorio.add(fi);
         escritorio.moveToFront(fi);
 
@@ -231,20 +237,22 @@ public class ConsultasAlumnos extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-         escritorio.removeAll();
+        escritorio.removeAll();
         escritorio.repaint();
         ActualizacionNotas an = new ActualizacionNotas();
         an.setVisible(true);
+        an.getContentPane().setBackground(new Color(0, 51, 102));
         escritorio.add(an);
         escritorio.moveToFront(an);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-         escritorio.removeAll();
+        escritorio.removeAll();
         escritorio.repaint();
-        ConsultaAlumnoxMateria cam= new ConsultaAlumnoxMateria();
+        ConsultaAlumnoxMateria cam = new ConsultaAlumnoxMateria();
         cam.setVisible(true);
+        cam.getContentPane().setBackground(new Color(0, 51, 102));
         escritorio.add(cam);
         escritorio.moveToFront(cam);
     }//GEN-LAST:event_jMenuItem1ActionPerformed

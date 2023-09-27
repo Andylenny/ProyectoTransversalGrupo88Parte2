@@ -71,8 +71,11 @@ private MateriaData materiaData= new MateriaData();
         setIconifiable(true);
         setMaximizable(true);
 
+        jLabel1.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Formulario de Inscripcion");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Seleccione un alumno");
 
         jcAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -81,9 +84,12 @@ private MateriaData materiaData= new MateriaData();
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Listado de Materias");
 
         grupo.add(jrMateriasInscriptas);
+        jrMateriasInscriptas.setForeground(new java.awt.Color(255, 255, 255));
         jrMateriasInscriptas.setText("Materias Inscriptas");
         jrMateriasInscriptas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +98,7 @@ private MateriaData materiaData= new MateriaData();
         });
 
         grupo.add(jrMateriasNoinscriptas);
+        jrMateriasNoinscriptas.setForeground(new java.awt.Color(255, 255, 255));
         jrMateriasNoinscriptas.setText("Materias no Inscriptas");
         jrMateriasNoinscriptas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,20 +145,18 @@ private MateriaData materiaData= new MateriaData();
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jrMateriasInscriptas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jrMateriasNoinscriptas)
+                .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jcAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jrMateriasInscriptas)
-                        .addGap(18, 18, 18)
-                        .addComponent(jrMateriasNoinscriptas))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -161,9 +166,12 @@ private MateriaData materiaData= new MateriaData();
                         .addGap(25, 25, 25)
                         .addComponent(jbSalir))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
                         .addComponent(jLabel1)))
-                .addGap(5, 5, 5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

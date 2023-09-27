@@ -113,7 +113,7 @@ public class AlumnoData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno  1");
+          //  JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno  1");
         }
         return alumno;
 
