@@ -228,7 +228,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jtCodigo.requestFocus();
         jtNombre.setEnabled(true);
         jtAño.setEnabled(true);
-        jrEstado.setEnabled(false);
+        jrEstado.setEnabled(true);
         jbBuscar.setEnabled(true);
         jbGuardar.setEnabled(true);
         jbSalir.setEnabled(true);

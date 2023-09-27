@@ -82,7 +82,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Fecha Nacimiento");
 
-        jBnuevo.setForeground(new java.awt.Color(0, 0, 0));
         jBnuevo.setText("NUEVO");
         jBnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +89,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jBeliminar.setForeground(new java.awt.Color(0, 0, 0));
         jBeliminar.setText("ELIMINAR");
         jBeliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +96,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jBguardar.setForeground(new java.awt.Color(0, 0, 0));
         jBguardar.setText("GUARDAR");
         jBguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +103,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jBsalir.setForeground(new java.awt.Color(0, 0, 0));
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +110,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jBbuscar.setForeground(new java.awt.Color(0, 0, 0));
         jBbuscar.setText("Buscar");
         jBbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,8 +139,8 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel3)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jCfechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(62, 62, 62)
+                                        .addComponent(jCfechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jBsalir))
                     .addGroup(layout.createSequentialGroup()
@@ -195,11 +190,11 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                         .addGap(25, 25, 25)
                         .addComponent(jLabel5))
                     .addComponent(jRestado))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jCfechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBnuevo)
                     .addComponent(jBeliminar)
@@ -212,23 +207,40 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-        // TODO add your handling code here:
-        int dni = Integer.parseInt(jTdocumento.getText());
-        String apellido = jTapellido.getText();
-        String nombre = jTnombre.getText();
-        boolean estado = jRestado.isEnabled();
-        LocalDate fechaNacimiento = jCfechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        // BOTON GUARDAR
+        try {
+            int dni = Integer.parseInt(jTdocumento.getText());
+            String apellido = jTapellido.getText();
+            String nombre = jTnombre.getText();
+            if (nombre.isEmpty() || apellido.isEmpty()) {
+                //VALIDAR CAMPOS
 
-        Alumnos alumno = new Alumnos(dni, apellido, nombre, fechaNacimiento, estado);
+                JOptionPane.showMessageDialog(this, "no debe haber campos vacios");
+                return;
+            }
+            boolean estado = jRestado.isSelected();
 
-        AlumnoData alu = new AlumnoData();
-        alu.guardarAlumno(alumno);
-        JOptionPane.showMessageDialog(this, "Alumno Guardado");
+            LocalDate fechaNacimiento = jCfechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
+            Alumnos alumno = new Alumnos(dni, apellido, nombre, fechaNacimiento, estado);
+
+            AlumnoData alu = new AlumnoData();
+            alu.guardarAlumno(alumno);
+            
+
+        } catch (NumberFormatException n) {
+            //VALIDAR DNI
+            JOptionPane.showMessageDialog(this, "debe ingresar un dni ");
+        }catch (NullPointerException e){
+            //VALIDAR FECHA
+            JOptionPane.showMessageDialog(this, "debe ingresar una fecha");
+        }
     }//GEN-LAST:event_jBguardarActionPerformed
-
+          
+    
+    
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
-        // TODO add your handling code here:
+        // BOTON BUSCAR
         try {
             int dni = Integer.parseInt(jTdocumento.getText());
             AlumnoData alumnoEncontrado = new AlumnoData();
@@ -253,7 +265,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBbuscarActionPerformed
 
     private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
-        // TODO add your handling code here:
+        // BOTON LIMPIAR
         activarCampos();
         limpiar();
         jTdocumento.requestFocus();
@@ -267,13 +279,13 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBnuevoActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
+        // BOTON SALIR
         dispose();
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
-        // TODO add your handling code here:
-
+        // BOTON ELIMINAR
+        try{
         int dni = Integer.parseInt(jTdocumento.getText());
         AlumnoData alumnoEncontrado = new AlumnoData();
 
@@ -286,6 +298,9 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         } else {
             // Si no se encuentra el alumno, muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Alumno no encontrado");
+        }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this,"debe ingresar un dni valido");
         }
 
 
