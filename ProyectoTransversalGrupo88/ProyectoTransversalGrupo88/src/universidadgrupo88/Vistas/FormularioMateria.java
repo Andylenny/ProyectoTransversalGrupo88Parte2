@@ -134,18 +134,15 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbBuscar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addGap(40, 40, 40)
-                        .addComponent(jrEstado)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(40, 40, 40)
+                                .addComponent(jrEstado)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,14 +151,13 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbBuscar)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))
-                                .addGap(8, 8, 8)))
-                        .addGap(18, 18, 18)
+                                .addGap(8, 8, 8))
+                            .addComponent(jbBuscar))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -187,43 +183,51 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // buscar
-         int codigo = Integer.parseInt(jtCodigo.getText());
-        
-        MateriaData materiaEncontrada = new MateriaData();
-// Realiza la búsqueda del alumno por DNI
-        
-        Materia materia = materiaEncontrada.buscarMateria(codigo);
-        if (materia != null) {
-            // Si se encuentra el alumno, muestra su información en los campos de texto
-            jtCodigo.setText(String.valueOf(materia.getIdMateria()));
-            jtNombre.setText(materia.getNombre());
-            jtAño.setText(String.valueOf(materia.getAnioMateria()));
-            jrEstado.setSelected(materia.isActivo());
-            
-        }  
+        // Realiza la búsqueda del alumno por Id de la materia
+        try {
+            int codigo = Integer.parseInt(jtCodigo.getText());
+
+            MateriaData materiaEncontrada = new MateriaData();
+
+            Materia materia = materiaEncontrada.buscarMateria(codigo);
+            if (materia != null) {
+                // Si se encuentra el alumno, muestra su información en los campos de texto
+                jtCodigo.setText(String.valueOf(materia.getIdMateria()));
+                jtNombre.setText(materia.getNombre());
+                jtAño.setText(String.valueOf(materia.getAnioMateria()));
+                jrEstado.setSelected(materia.isActivo());
+
+            }
+        } catch (NumberFormatException n) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un ID válido");
+        }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // Eliminar
-        int idMateria=Integer.parseInt(jtCodigo.getText());
-        
-      
-        MateriaData materiaEncontrado = new MateriaData();
-        Materia materia = materiaEncontrado.buscarMateria(idMateria);
-        
-        if (materia != null) {
-            // Si se encuentra el alumno, elimínalo
-            materiaEncontrado.eliminarMateria(materia);
-            JOptionPane.showMessageDialog(this, "Materia eliminada");
-        } else {
-            // Si no se encuentra el alumno, muestra un mensaje de error
-            JOptionPane.showMessageDialog(this, "Materia no encontrado");
+        //Primero se busca el id de la materia para luego eliminar
+        try {
+            int idMateria = Integer.parseInt(jtCodigo.getText());
+
+            MateriaData materiaEncontrado = new MateriaData();
+            Materia materia = materiaEncontrado.buscarMateria(idMateria);
+
+            if (materia != null) {
+                // Si se encuentra el alumno, elimínalo
+                materiaEncontrado.eliminarMateria(materia);
+                JOptionPane.showMessageDialog(this, "Materia eliminada");
+            } else {
+                // Si no se encuentra el alumno, muestra un mensaje de error
+                JOptionPane.showMessageDialog(this, "Materia no encontrado");
+            }
+        } catch (NumberFormatException n) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un ID válido");
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         // TODO add your handling code here:
-         activarCampos();
+        activarCampos();
         limpiar();
         jtCodigo.requestFocus();
         jtNombre.setEnabled(true);
@@ -237,17 +241,32 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
+        try{
         int codigo = Integer.parseInt(jtCodigo.getText());
         String nombre = jtNombre.getText();
         int año = Integer.parseInt(jtAño.getText());
-        boolean estado = jrEstado.isEnabled();
-       
+        if (nombre.isEmpty() ) {
+                //VALIDAR CAMPOS
 
-       Materia materia = new Materia(codigo, nombre, año, estado);
+                JOptionPane.showMessageDialog(this, "No debe haber campos vacios");
+                return;
+            }
+        boolean estado = jrEstado.isEnabled();
+
+        Materia materia = new Materia(codigo, nombre, año, estado);
 
         MateriaData mat = new MateriaData();
         mat.guardarMateria(materia);
-        JOptionPane.showMessageDialog(this, "Alumno Guardado");
+       
+        
+        }catch (NumberFormatException n) {
+            //VALIDAR DNI
+            JOptionPane.showMessageDialog(this, "Debe ingresar un numero válido ");
+        }catch (NullPointerException e){
+            //VALIDAR FECHA
+            JOptionPane.showMessageDialog(this, "Debe ingresar una fecha");
+        }
+        
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -294,8 +313,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jtNombre.setText("");
         jtAño.setText("");
         jrEstado.isEnabled();
-
-
 
     }
 
