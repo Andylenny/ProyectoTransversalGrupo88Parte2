@@ -260,10 +260,10 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
        
         
         }catch (NumberFormatException n) {
-            //VALIDAR DNI
+            //VALIDAR CODIGO
             JOptionPane.showMessageDialog(this, "Debe ingresar un numero válido ");
         }catch (NullPointerException e){
-            //VALIDAR FECHA
+            //VALIDAR AÑO
             JOptionPane.showMessageDialog(this, "Debe ingresar una fecha");
         }
         

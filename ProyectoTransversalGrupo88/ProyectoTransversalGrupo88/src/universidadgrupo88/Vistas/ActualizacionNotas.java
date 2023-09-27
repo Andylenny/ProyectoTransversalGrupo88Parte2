@@ -170,6 +170,7 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // GUARDAR
+        try{
         double nota;
         Materia materia;
         
@@ -186,9 +187,13 @@ public class ActualizacionNotas extends javax.swing.JInternalFrame {
             ins.setNota(nota);
             Inscripcion inscr = new Inscripcion(alumno, materia, 2);
             inscripcionData.actualizarNota(ins);
-            JOptionPane.showMessageDialog(this, "Materia guardada");
+            JOptionPane.showMessageDialog(this, "Nota actualizada");
         }else{
             JOptionPane.showMessageDialog(this, "Seleccione una materia");
+        }
+        }catch (NumberFormatException n) {
+            //VALIDAR CODIGO
+            JOptionPane.showMessageDialog(this, "Debe ingresar un numero válido ");
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
